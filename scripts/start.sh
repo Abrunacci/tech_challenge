@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 
-while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' elasticsearch:9200)" != "200" ]]; do
+while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' ${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT})" != "200" ]]; do
   echo 'Waiting for elasticsearch'
   sleep 5;
 done

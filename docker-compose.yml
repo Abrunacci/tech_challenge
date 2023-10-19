@@ -27,7 +27,6 @@ services:
       ES_JAVA_OPTS: -Xms512m -Xmx1g
       discovery.type: single-node
       cluster.name: docker-cluster
-
     networks:
       - challenge_network
 
