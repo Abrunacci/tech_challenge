@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+        context: .
+        dockerfile: Docker/development/Dockerfile
+    command: bash ./scripts/start.sh
+    env_file:
+        - "Docker/development/env/public"
+        - "Docker/development/env/private"
+    ports:
+        - "8000:8000"
+    volumes:
+        - .:/app
+    depends_on:
+        - elasticsearch
+    networks:
+      - challenge_network
+
+  elasticsearch:
+    container_name: es
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    ports:
+        - "9200:9200"
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx1g
+      discovery.type: single-node
+      cluster.name: docker-cluster
+
+    networks:
+      - challenge_network
+
+networks:
+  challenge_network:
+    driver: bridge
