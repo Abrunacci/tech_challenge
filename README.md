@@ -33,20 +33,21 @@ docker-compose down
 # API Test Coverage:
 
 ```shell
+
 ---------- coverage: platform linux, python 3.10.13-final-0 ----------
 Name                                       Stmts   Miss  Cover
 --------------------------------------------------------------
-src/connectors/elasticsearch.py                5      0   100%
+src/connectors/elasticsearch.py                4      0   100%
 src/connectors/external_api_connector.py      36      0   100%
 src/exceptions/get_movie_exception.py          4      0   100%
 src/exceptions/seed_movie_exception.py         4      0   100%
 src/main.py                                   13      0   100%
 src/mappings/movies.py                         1      0   100%
 src/routers/movies.py                         22      0   100%
-src/services/elasticsearch_movies.py          47      0   100%
-src/services/movies.py                        27      0   100%
+src/services/elasticsearch_movies.py          43      0   100%
+src/services/movies.py                        26      0   100%
 --------------------------------------------------------------
-TOTAL                                        159      0   100%
+TOTAL                                        153      0   100%
 
 ```
 
