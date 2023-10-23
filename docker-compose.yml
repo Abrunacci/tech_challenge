@@ -3,32 +3,42 @@ version: '3.9'
 services:
   api:
     build:
-        context: .
-        dockerfile: Docker/development/Dockerfile
+      context: .
+      dockerfile: Docker/development/Dockerfile
     command: bash ./scripts/start.sh
     env_file:
-        - "Docker/development/env/public"
-        - "Docker/development/env/private"
+      - "Docker/development/env/public"
+      - "Docker/development/env/private"
     ports:
-        - "8000:8000"
+      - "8000:8000"
     volumes:
-        - .:/app
+      - .:/app
     depends_on:
-        - elasticsearch
+      - elasticsearch
     networks:
       - challenge_network
 
   elasticsearch:
     container_name: es
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.4
     ports:
-        - "9200:9200"
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data:rw
     environment:
       ES_JAVA_OPTS: -Xms512m -Xmx1g
       discovery.type: single-node
       cluster.name: docker-cluster
+      xpack.security.enabled: "false"
+      xpack.security.transport.ssl.enabled: "false"
+      xpack.security.http.ssl.enabled: "false"
+
     networks:
       - challenge_network
+
+volumes:
+  esdata:
+    driver: local
 
 networks:
   challenge_network:

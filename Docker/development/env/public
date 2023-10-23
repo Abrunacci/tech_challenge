@@ -1,3 +1,4 @@
 EXTERNAL_API_URL=https://jsonmock.hackerrank.com/api/moviesdata/search/
 ELASTICSEARCH_HOST=elasticsearch
 ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_INDEX_NAME=movies
